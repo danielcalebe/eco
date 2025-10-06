@@ -99,3 +99,35 @@ input.form-control:focus {
     border-color: #C9D1C4;
     box-shadow: 0 0 0 0.2rem rgba(120, 172, 77, 0.25);
 }
+    .password-container {
+        position: relative;
+        width: 100%; /* Example width */
+    }
+
+    #passwordInput {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #togglePassword {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+     #passwordInput2 {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #togglePassword2 {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+   

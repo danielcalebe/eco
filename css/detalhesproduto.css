@@ -1,0 +1,67 @@
+body {
+    background-color: #C9D1C4;
+}  
+
+#avaliacoes .card-body {
+  border-radius: 10px;
+}
+  
+  /* Container da imagem principal */
+  .zoom-container {
+    position: relative;
+    display: inline-block;
+    background-color: #f3f8f1;
+    border-radius: 10px;
+  }
+  .zoom-container img {
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid #ddd;
+  }
+
+  /* Caixa de zoom */
+  .zoom-result {
+    position: absolute;
+    top: 0;
+    left: 105%;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ddd;
+    background-repeat: no-repeat;
+    background-size: 200% 200%; /* zoom level */
+    display: none;
+        background-color: #f3f8f1;
+
+  }
+
+  /* Miniaturas */
+  .thumb-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+            background-color: #f3f8f1;
+
+  }
+  .thumb-img:hover {
+    transform: scale(1.1);
+    border-color: #517C58;
+  }
+
+
+  .btn-buy{
+    background-color: #517C58;
+    color: #F7F5EC;
+
+}
+
+.btn-buy:hover{
+    background-color: #f3f8f1;
+    color: #517C58;
+}
+
+.border-input {
+}

@@ -2,229 +2,235 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - EcoRaiz</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/cadastro.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - EcoRaiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/cadastro.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <style>
 
 </style>
+
 <body>
-   <!-- Adicione no <head> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Adicione no <head> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<nav class="navbar navbar-expand-lg" style="background-color: #f3f8f1;">
-  <div class="container-fluid px-4">
-    <!-- Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="../img/logo.png" alt="Logo EcoRaiz" width="40" class="me-2">
-    </a>
-
-    <!-- Botão responsivo -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+  <nav class="navbar navbar-expand-lg" style="background-color: #f3f8f1;">
+  <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+    
+    <!-- Botão responsivo na extrema esquerda -->
+    <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Menu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Links -->
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            <i class="bi bi-house-door me-1"></i> Início
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            <i class="bi bi-shop me-1"></i> Loja
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            <i class="bi bi-recycle me-1"></i> Compostagem
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            <i class="bi bi-info-circle me-1"></i> Institucional
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" href="#">
-            <i class="bi bi-envelope me-1"></i> Contato
-          </a>
-        </li>
+    <!-- Logo -->
+    <a class="navbar-brand mx-3" href="#">
+      <img src="../img/logo.png" alt="Logo EcoRaiz" width="40">
+    </a>
+
+    <!-- Links do menu centralizados -->
+    <div class="collapse navbar-collapse justify-content-center order-1" id="navbarNav">
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-5">
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i class="bi bi-house-door me-1"></i> Início</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="../public/catalogoprodutos.html"><i class="bi bi-shop me-1"></i> Loja</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i class="bi bi-recycle me-1"></i> Compostagem</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i class="bi bi-info-circle me-1"></i> Institucional</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i class="bi bi-envelope me-1"></i> Contato</a></li>
       </ul>
     </div>
 
-    <!-- Área de login/perfil -->
-    <div class="d-flex gap-3 align-items-center">
-      <!-- Botão Doação -->
+    <!-- Área de login/perfil à direita -->
+    <div class="d-flex gap-3 align-items-center order-2">
       <a href="doacao.html" class="btn btn-success px-3 rounded-pill d-flex align-items-center">
         <i class="bi bi-heart-fill me-2"></i> Doar agora
       </a>
-
-      <!-- Caso NÃO esteja logado -->
-      <!-- 
-      <a href="login.html" class="btn btn-outline-success px-3 rounded-pill d-flex align-items-center">
-        <i class="bi bi-box-arrow-in-right me-2"></i> Login
-      </a> 
-      -->
-
-      <!-- Caso esteja logado -->
       <div class="d-flex flex-column align-items-center ms-2">
         <i class="bi bi-person-circle fs-2 mb-1" style="color:#1E5E2E;"></i>
-
-        <!-- Caso o usuario tenha imagem de perfil-->
-        <!-- <img src="../img/user.png" alt="Perfil" width="40" height="40" class="rounded-circle mb-1 border"> -->
       </div>
     </div>
+
   </div>
 </nav>
 
-    <section class="background-radial-gradient overflow-hidden">
-        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-            <div class="row gx-lg-5 align-items-center mb-5">
-                <!-- Texto lateral -->
-                <div class="col-lg-6 mb-6 mb-lg-0 text-left-adjust" style="z-index: 10">
-                    <h1 class="my-5 display-5 fw-bold ls-tight" style="color: #f7f5ec">
-                        Cadastre-se agora na
-                        <br />
-                        <span style="color: #78ac4d">Ecoraiz</span>
-                    </h1>
-                    <p class="mb-4 opacity-70" style="color: #f7f5ec">
-                        A EcoRaiz é uma empresa comprometida com a sustentabilidade.
-                        Nossa plataforma permite que pessoas físicas e jurídicas realizem cadastro,
-                        doem matéria orgânica, façam compras de fertilizantes naturais
-                        e compartilhem dados de maneira segura. Junte-se a nós e contribua para
-                        práticas ambientais conscientes enquanto gerencia seu negócio com eficiência.
-                    </p>
+  <section class="background-radial-gradient overflow-hidden">
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <!-- Texto lateral -->
+        <div class="col-lg-6 mb-6 mb-lg-0 text-left-adjust" style="z-index: 10">
+          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: #f7f5ec">
+            Cadastre-se agora na
+            <br />
+            <span style="color: #78ac4d">Ecoraiz</span>
+          </h1>
+          <p class="mb-4 opacity-70" style="color: #f7f5ec">
+            A EcoRaiz é uma empresa comprometida com a sustentabilidade.
+            Nossa plataforma permite que pessoas físicas e jurídicas realizem cadastro,
+            doem matéria orgânica, façam compras de fertilizantes naturais
+            e compartilhem dados de maneira segura. Junte-se a nós e contribua para
+            práticas ambientais conscientes enquanto gerencia seu negócio com eficiência.
+          </p>
+        </div>
+
+        <!-- Formulário -->
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div class="card bg-glass shadow-lg py-2">
+            <div class="card-body px-4 py-5 px-md-5">
+              <form>
+                <!-- Título do card -->
+                <div class="text-center mb-4">
+                  <img src="../img/logo.png" alt="Logo EcoRaiz" width="100">
                 </div>
 
-                <!-- Formulário -->
-                <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-                    <div class="card bg-glass shadow-lg py-2">
-                        <div class="card-body px-4 py-5 px-md-5">
-                            <form>
-                                <!-- Título do card -->
-                                <div class="text-center mb-4">
-                                    <img src="../img/logo.png" alt="Logo EcoRaiz" width="100">
-                                </div>
 
+                <!-- Tipo de pessoa -->
+                <div class="mb-4">
+                  <label class="form-label fw-bold d-block mb-2">Tipo de cadastro</label>
+                  <div class="btn-group tipo-pessoa-group" role="group" aria-label="Tipo de pessoa">
+                    <input type="radio" class="btn-check" name="tipoPessoa" id="pf" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="pf">Pessoa Física</label>
 
-                                <!-- Tipo de pessoa -->
-                                <div class="mb-4">
-                                    <label class="form-label fw-bold d-block mb-2">Tipo de cadastro</label>
-                                    <div class="btn-group tipo-pessoa-group" role="group" aria-label="Tipo de pessoa">
-                                        <input type="radio" class="btn-check" name="tipoPessoa" id="pf"
-                                            autocomplete="off" checked>
-                                        <label class="btn btn-outline-primary" for="pf">Pessoa Física</label>
+                    <input type="radio" class="btn-check" name="tipoPessoa" id="pj" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="pj">Pessoa Jurídica</label>
+                  </div>
+                </div>
 
-                                        <input type="radio" class="btn-check" name="tipoPessoa" id="pj"
-                                            autocomplete="off">
-                                        <label class="btn btn-outline-primary" for="pj">Pessoa Jurídica</label>
-                                    </div>
-                                </div>
-
-                                <!-- Campos Pessoa Física -->
-                                <div id="pfFields">
-                                    <div class="mb-3">
-                                        <label class="form-label">Nome completo</label>
-                                        <input type="text" class="form-control" placeholder="Seu nome" name="nome">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">CPF</label>
-                                        <input type="text" class="form-control" placeholder="000.000.000-00" name="cpf">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Data de nascimento</label>
-                                        <input type="date" class="form-control" name="data_nascimento">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">E-mail</label>
-                                        <input type="email" class="form-control" placeholder="seu@email.com"
-                                            name="email">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Senha</label>
-                                        <input type="password" class="form-control" placeholder="********" name="senha">
-                                    </div>
-                                </div>
-
-                                <!-- Campos Pessoa Jurídica -->
-                                <div id="pjFields" style="display:none;">
-                                    <div class="mb-3">
-                                        <label class="form-label">Razão social</label>
-                                        <input type="text" class="form-control" placeholder="Nome da empresa"
-                                            name="nome">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">CNPJ</label>
-                                        <input type="text" class="form-control" placeholder="00.000.000/0000-00"
-                                            name="cnpj">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Nome do responsável</label>
-                                        <input type="text" class="form-control" placeholder="Nome do responsável"
-                                            name="responsavel">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">E-mail</label>
-                                        <input type="email" class="form-control" placeholder="email@empresa.com"
-                                            name="email">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Senha</label>
-                                        <input type="password" class="form-control" placeholder="********" name="senha">
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-between mt-4">
-                                    <a href="login.html" class="text-decoration-none"
-                                        style="color: #1E5E2E; font-weight: 500;">
-                                        Já possui conta?
-                                    </a>
-                                    <button type="submit" class="btn btn-register">Cadastrar</button>
-                                </div>
-
-
-                            </form>
-                        </div>
+                <!-- Campos Pessoa Física -->
+                <div id="pfFields">
+                  <div class="mb-3">
+                    <label class="form-label">Nome completo</label>
+                    <input type="text" class="form-control" placeholder="Seu nome" name="nome">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">CPF</label>
+                    <input type="text" class="form-control" placeholder="000.000.000-00" name="cpf">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Data de nascimento</label>
+                    <input type="date" class="form-control" name="data_nascimento">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-control" placeholder="seu@email.com" name="email">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Senha</label>
+                    <div class="password-container">
+                      <input type="password" class="form-control" placeholder="********" name="senha"
+                        id="passwordInput">
+                      <i class="bi bi-eye" id="togglePassword" ></i>
                     </div>
 
-                   
-                    
+                  </div>
                 </div>
+
+                <!-- Campos Pessoa Jurídica -->
+                <div id="pjFields" style="display:none;">
+                  <div class="mb-3">
+                    <label class="form-label">Razão social</label>
+                    <input type="text" class="form-control" placeholder="Nome da empresa" name="nome">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">CNPJ</label>
+                    <input type="text" class="form-control" placeholder="00.000.000/0000-00" name="cnpj">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Nome do responsável</label>
+                    <input type="text" class="form-control" placeholder="Nome do responsável" name="responsavel">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-control" placeholder="email@empresa.com" name="email">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Senha</label>
+                    <div class="password-container">
+                      <input type="password" class="form-control" placeholder="********" name="senha"
+                        id="passwordInput2">
+                      <i class="bi bi-eye" id="togglePassword2" ></i>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                  <a href="login.html" class="text-decoration-none" style="color: #1E5E2E; font-weight: 500;">
+                    Já possui conta?
+                  </a>
+                  <button type="submit" class="btn btn-register">Cadastrar</button>
+                </div>
+
+
+              </form>
             </div>
+          </div>
+
+
+
         </div>
-        <!--Interações básicas do usuário-->
-         <script>
-                        const pfRadio = document.getElementById('pf');
-                        const pjRadio = document.getElementById('pj');
-                        const pfFields = document.getElementById('pfFields');
-                        const pjFields = document.getElementById('pjFields');
+      </div>
+    </div>
+    <!--Interações básicas do usuário-->
+    <script>
+      const pfRadio = document.getElementById('pf');
+      const pjRadio = document.getElementById('pj');
+      const pfFields = document.getElementById('pfFields');
+      const pjFields = document.getElementById('pjFields');
 
-                        pfRadio.addEventListener('change', () => {
-                            pfFields.style.display = 'block';
-                            pjFields.style.display = 'none';
-                        });
+      pfRadio.addEventListener('change', () => {
+        pfFields.style.display = 'block';
+        pjFields.style.display = 'none';
+      });
 
-                        pjRadio.addEventListener('change', () => {
-                            pfFields.style.display = 'none';
-                            pjFields.style.display = 'block';
-                        });
-                    </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" 
-        crossorigin="anonymous"></script>
+      pjRadio.addEventListener('change', () => {
+        pfFields.style.display = 'none';
+        pjFields.style.display = 'block';
+      });
+      const passwordInput = document.getElementById('passwordInput');
+      const togglePassword = document.getElementById('togglePassword');
+      const passwordInput2 = document.getElementById('passwordInput2');
+      const togglePassword2 = document.getElementById('togglePassword2');
 
-    </section>
+      togglePassword.addEventListener('click', function () {
+        // Alterna o tipo do input
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Alterna o ícone entre bi-eye e bi-eye-slash
+        if (this.classList.contains('bi-eye')) {
+          this.classList.remove('bi-eye');
+          this.classList.add('bi-eye-slash');
+        } else {
+          this.classList.remove('bi-eye-slash');
+          this.classList.add('bi-eye');
+        }
+      });
+      togglePassword2.addEventListener('click', function () {
+        // Alterna o tipo do input
+        const type = passwordInput2.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput2.setAttribute('type', type);
+
+        // Alterna o ícone entre bi-eye e bi-eye-slash
+        if (this.classList.contains('bi-eye')) {
+          this.classList.remove('bi-eye');
+          this.classList.add('bi-eye-slash');
+        } else {
+          this.classList.remove('bi-eye-slash');
+          this.classList.add('bi-eye');
+        }
+      });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+
+  </section>
 </body>
 
 </html>
