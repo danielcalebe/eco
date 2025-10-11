@@ -1,0 +1,98 @@
+    body {
+      background-color: #e9eff1;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .sidebar {
+      background-color: #2b3a55;
+      color: #fff;
+      min-height: 100vh;
+      width: 230px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: 30px;
+    }
+
+    .sidebar .profile {
+      text-align: center;
+
+      margin-bottom: 20px;
+    }
+
+    .sidebar .profile img {
+      width: 140px;
+      
+    }
+
+    .sidebar h4 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 5px 10px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #435d8c;
+    }
+
+    .sidebar i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .content {
+      margin-left: 250px;
+      padding: 40px;
+    }
+
+    .table-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-dark {
+      background-color: #2b3a55;
+    }
+
+    .status-recebido {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+
+    .status-cancelado {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: relative;
+        min-height: auto;
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
