@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doações</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/doacoes.css">
+</head>
+
+
+
+
+
+
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #f3f8f1;">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+
+            <!-- Botão responsivo na extrema esquerda -->
+            <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Logo -->
+            <a class="navbar-brand mx-3" href="#">
+                <img src="../img/logo.png" alt="Logo EcoRaiz" width="40">
+            </a>
+
+            <!-- Links do menu centralizados -->
+            <div class="collapse navbar-collapse justify-content-center order-1" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-5">
+                    <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i
+                                class="bi bi-house-door me-1"></i> Início</a></li>
+                    <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i
+                                class="bi bi-shop me-1"></i> Loja</a></li>
+                    <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i
+                                class="bi bi-recycle me-1"></i> Compostagem</a></li>
+                    <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i
+                                class="bi bi-info-circle me-1"></i> Institucional</a></li>
+                    <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><i
+                                class="bi bi-envelope me-1"></i> Contato</a></li>
+                </ul>
+            </div>
+
+            <!-- Área de login/perfil à direita -->
+            <div class="d-flex gap-3 align-items-center order-2">
+                <a href="doacao.html" class="btn btn-success px-3 rounded-pill d-flex align-items-center">
+                    <i class="bi bi-heart-fill me-2"></i> Doar agora
+                </a>
+                <div class="d-flex flex-column align-items-center ms-2">
+                    <i class="bi bi-person-circle fs-2 mb-1" style="color:#1E5E2E;"></i>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Banner Principal -->
+    <section class="banner">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h1>DINÂMICA ORGÂNICA</h1>
+            <p>Temos um negócio social que coleta e transforma o seu lixo orgânico em fonte de vida!</p>
+            <a href="doacao.html" class="btn btn-doar">   <i class="bi bi-heart-fill me-2"></i> Doe agora</a>
+        </div>
+    </section>
+
+
+
+    <section class="participar-section">
+        <div class="container">
+            <div class="participar-card mx-auto d-flex flex-column flex-md-row">
+                <!-- Imagem -->
+                <img src="../img/quatro-topicos.png" alt="Ciclo Orgânico">
+
+                <!-- Texto -->
+                <div class="participar-text">
+                    <h1>Porque participar?</h1>
+                    <p>A Dinâmica Orgânica é a opção ideal para quem busca um estilo de vida mais sustentável e deseja
+                        resolver a questão do lixo orgânico de forma eficiente!</p>
+                    <p>Em apenas 10 anos, <strong>cada família que adere à Dinâmica evita que um caminhão completo de
+                            resíduos orgânicos seja enviado para aterros sanitários</strong>.</p>
+                    <p>Tudo de forma simples e descomplicada! <strong>Basta separar seus resíduos em casa, e nós
+                            cuidamos de todo o processo. FAÇA SUA DOAÇÃO AGORA!</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="container d-flex justify-content-center flex-column align-items-center">
+        <h1 class="fw-bold  text-dark px-4 rounded-4" >O que pode compostar?</h1>
+        <img  style="width: 80%;" class="cursor-pointer" src="../img/Pode-ou-não-pode-compostar.jpg" alt="">
+    </section>
+    <section class="container">
+
+        <div class="text-center mt-5">
+            <h1 class="fw-bold" >Bairros atendidos</h1>
+            <p class="lead">Veja abaixo o mapa de coleta, trabalhamos em toda BH e coletamos por região. Basta cadastrar sua doação!</p>
+        </div>
+
+        <!-- Seção do mapa com retângulo de fundo -->
+        <div class="position-relative w-100">
+            <div class="container  d-flex justify-content-center">
+                <iframe class="rounded-3 shadow-lg shadow-lg"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240097.52707591024!2d-44.128867424801776!3d-19.902317559052534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa690cacacf2c33%3A0x5b35795e3ad23997!2sBelo%20Horizonte%2C%20MG!5e0!3m2!1spt-BR!2sbr!4v1759861744483!5m2!1spt-BR!2sbr"
+                    width="90%" height="500" style="border: 4px solid #517C58;" allowfullscreen="true" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+
+        <div class="container mt-3">
+
+            <div class="row g-3 dias-semana">
+                <!-- Segunda-feira -->
+                <div class="col">
+                    <div class="card day-card shadow-sm border-0 h-100">
+                        <div class="card-header  text-white text-center">
+                            <h1 class="card-title h5 mb-0 fw-bold">Segunda</h1>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-text text-center">Norte e Venda Nova</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terça-feira -->
+                <div class="col">
+                    <div class="card day-card shadow-sm border-0 h-100">
+                        <div class="card-header  text-white text-center">
+                            <h1 class="card-title h5 mb-0 fw-bold">Terça</h1>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-text text-center">Noroeste e Pampulha</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quarta-feira -->
+                <div class="col">
+                    <div class="card day-card shadow-sm border-0 h-100">
+                        <div class="card-header  text-light text-center">
+                            <h1 class="card-title h5 mb-0 fw-bold">Quarta</h1>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-text text-center">Oeste e Barreiro</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quinta-feira -->
+                <div class="col">
+                    <div class="card day-card shadow-sm border-0 h-100">
+                        <div class="card-header  text-white text-center">
+                            <h1 class="card-title h5 mb-0 fw-bold">Quinta</h1>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-text text-center">Leste e Nordeste</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sexta-feira -->
+                <div class="col">
+                    <div class="card day-card shadow-sm border-0 h-100">
+                        <div class="card-header  text-white text-center">
+                            <h1 class="card-title h5 mb-0 fw-bold">Sexta</h1>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-text text-center">Centro-Sul</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <br><br>
+
+
+    <section class="container mt-5 rounded-3" id="produtos-gerados" style="background-color: #517C58;">
+        <h1 class="pt-4 text-center text-light fw-bold" >Produtos Gerados</h1>
+        <div class="container px-4 px-lg-6 mt-4">
+            <div class="row gx-4 gx-lg-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
+
+                <!-- Card 1 -->
+                <div class="col mb-4">
+                    <div class="card product-card h-100 text-center position-relative">
+                        <img class="card-img-top p-3" src="../img/condicionador-agricultura.png" alt="Condicionador">
+                        <div class="card-body d-flex flex-column text-start">
+                            <h5 class="card-title">Condicionador</h5>
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 p-3">
+                            <i class="bi bi-arrow-right fs-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col mb-4">
+                    <div class="card product-card h-100 text-center position-relative">
+                        <img class="card-img-top p-3" src="../img/composto-organico.png" alt="Composto Orgânico">
+                        <div class="card-body d-flex flex-column text-start">
+                            <h5 class="card-title">Composto Orgânico</h5>
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 p-3">
+                            <i class="bi bi-arrow-right fs-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col mb-4">
+                    <div class="card product-card h-100 text-center position-relative">
+                        <img class="card-img-top p-3" src="../img/biofertilizante-liquido.png"
+                            alt="Biofertilizante Líquido">
+                        <div class="card-body d-flex flex-column text-start">
+                            <h5 class="card-title">Biofertilizante Líquido</h5>
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 p-3">
+                            <i class="bi bi-arrow-right fs-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col mb-4">
+                    <div class="card product-card h-100 text-center position-relative">
+                        <img class="card-img-top p-3" src="../img/adubo.png" alt="Adubo Fertilizante">
+                        <div class="card-body d-flex flex-column text-start">
+                            <h5 class="card-title">Adubo Fertilizante</h5>
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 p-3">
+                            <i class="bi bi-arrow-right fs-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col mb-4">
+                    <div class="card product-card h-100 text-center position-relative">
+                        <img class="card-img-top p-3" src="../img/substrato-para-mudas.png" alt="Substratos para Mudas">
+                        <div class="card-body d-flex flex-column text-start">
+                            <h5 class="card-title">Substratos para Mudas</h5>
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 p-3">
+                            <i class="bi bi-arrow-right fs-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+<br>
+        
+    </section>
+<br><br>
+        <div id="indicadores" class="container py-5">
+
+            <h1 class="text-center mb-4 fw-bold " >Principais Indicadores</h1>
+
+            <!-- Primeira linha: 4 cards largos com mesma altura -->
+            <div class="row g-4 justify-content-center mb-4">
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-people-fill mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="10451"></h3>
+                        <p>famílias já assinaram o nosso serviço</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-bucket-fill  mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="755721"></h3>
+                        <p>coletas efetuadas desde 2015</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-map-fill  mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="599117"></h3>
+                        <p>quilômetros percorridos por nossa equipe</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-heart-fill  mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="23801"></h3>
+                        <p>toneladas de impacto positivo total</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda linha: 5 cards menores com mesma altura -->
+            <div class="row g-4 justify-content-center">
+                <div class="col-6 col-md-4 col-lg-2 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-trash-fill mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="8003"></h3>
+                        <p>toneladas de resíduos orgânicos coletados</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-globe  mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="6145"></h3>
+                        <p>toneladas de emissões de CO2 eq evitadas</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-arrow-repeat  mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="4818"></h3>
+                        <p>toneladas de composto orgânico produzido</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-tree-fill  mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="3001"></h3>
+                        <p>toneladas de vegetação compostadas</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 d-flex">
+                    <div class="indicator-card text-center p-3 flex-fill">
+                        <i class="bi bi-bicycle  mb-2"></i>
+                        <h3 class="montserrat fw-bold contador" data-target="1833"></h3>
+                        <p>toneladas de emissões evitadas coletando de bicicleta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start " style="background-color: #F2F7EC; ">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h1 class="text-uppercase mb-4 font-weight-bold">
+                            Ecoraiz
+                            <img src="../img/logo.png" alt="" width="50px">
+                        </h1>
+                        <p>
+                            Na EcoRaiz, oferecemos produtos naturais e sustentáveis,
+                            cuidando do meio ambiente e do seu bem-estar em cada detalhe
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Produtos</h6>
+                        <p>
+                            <a class="">Fertilizantes</a>
+                        </p>
+                        <p>
+                            <a class="">Equipamentos</a>
+                        </p>
+                        <p>
+                            <a class="">Pecuária</a>
+                        </p>
+                        <p>
+                            <a class="">Horta</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">
+                            Links Úteis
+                        </h6>
+                        <p>
+                            <a class="">Sua conta</a>
+                        </p>
+                        <p>
+                            <a class="">Doe agora</a>
+                        </p>
+                        <p>
+                            <a class="">Compre na loja</a>
+                        </p>
+                        <p>
+                            <a class="">Ajuda</a>
+                        </p>
+                    </div>
+
+                    <!-- Grid column -->
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Contato</h6>
+                        <p><i class="fas fa-home mr-3"></i> Belo Horizonte - MG, Brasil</p>
+                        <p><i class="fas fa-envelope mr-3"></i> ecoraiz@contato.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> + 55 31 3234 5675</p>
+                        <p><i class="fas fa-print mr-3"></i> + 55 31 3234 5672</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+
+            <hr class="my-3">
+
+            <!-- Section: Copyright -->
+            <section class="p-3 pt-0">
+                <div class="row d-flex align-items-center">
+                    <!-- Grid column -->
+                    <div class="col-md-7 col-lg-8 text-center text-md-start">
+                        <!-- Copyright -->
+                        <div class="p-3">
+                            © 2025 Copyright:
+                            <a class="" href="">www.ecoraiz.com</a>
+                        </div>
+                        <!-- Copyright -->
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                        <!-- Facebook -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="" role="button"><i
+                                class="bi bi-facebook"></i>
+                        </a>
+
+                        <!-- Twitter -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="" role="button"><i
+                                class="bi bi-twitter"></i></a>
+
+                        <!-- Google -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="" role="button"><i
+                                class="bi bi-google"></i></a>
+
+                        <!-- Instagram -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="" role="button"><i
+                                class="bi bi-instagram"></i></a>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+            </section>
+        </div>
+        <!-- Grid container -->
+    </footer>
+    <!-- Footer -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+<script src="../js/doacoes.js"></script>
+
+
+</body>
+
+</html>
