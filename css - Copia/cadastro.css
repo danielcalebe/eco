@@ -1,0 +1,133 @@
+body {
+    background-color: #C9D1C4;
+}
+
+.card-body {
+    background-color: #F7F5EC;
+}
+
+
+body {
+    background-color: rgb(0, 0, 0);
+
+    background-image:
+
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url('../img/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bg-glass .card-body {
+    border-radius: 25px;
+    background-color: #F7F5EC;
+
+}
+
+.card.bg-glass {
+    background-color: #F7F5EC;
+
+    border-radius: 25px;
+}
+
+.tipo-pessoa-group .btn {
+    min-width: 130px;
+}
+
+/* Botões do tipo de pessoa personalizados */
+.tipo-pessoa-group .btn-outline-primary {
+    color: #1E5E2E;
+    border-color: #1E5E2E;
+}
+
+.tipo-pessoa-group .btn-outline-primary:hover {
+    background-color: #1E5E2E;
+    color: #C9D1C4;
+    border-color: #1E5E2E;
+}
+
+.tipo-pessoa-group .btn-check:checked+.btn-outline-primary {
+    background-color: #1E5E2E;
+    color: #C9D1C4;
+    border-color: #1E5E2E;
+}
+
+.btn-register {
+    background-color: #1E5E2E;
+    color: #C9D1C4;
+    border: none;
+    border-radius: 10px;
+    padding: 8px;
+    border: 1px solid #1E5E2E
+}
+
+.btn-register:hover {
+    background-color: #C9D1C4;
+    color: #1E5E2E;
+    border: 1px solid #1E5E2E;
+}
+
+.btn-register:active {
+    background-color: #1E5E2E;
+    color: #C9D1C4;
+}
+
+.col-lg-6.text-left-adjust {
+    transform: translateY(-150px); /* Sobe 50px, ajuste conforme desejar */
+}
+.btn-donate {
+    background-color: #C9D1C4;
+    color: #1E5E2E;
+    border: 1px solid #1E5E2E;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.btn-donate:hover {
+    background-color: #1E5E2E;
+    color: #C9D1C4;
+    border: 1px solid #C9D1C4;
+}
+
+.btn-donate:active {
+    background-color: #C9D1C4;
+    color: #1E5E2E;
+}
+input.form-control:focus {
+    border-color: #C9D1C4;
+    box-shadow: 0 0 0 0.2rem rgba(120, 172, 77, 0.25);
+}
+    .password-container {
+        position: relative;
+        width: 100%; /* Example width */
+    }
+
+    #passwordInput {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #togglePassword {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+     #passwordInput2 {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #togglePassword2 {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+   

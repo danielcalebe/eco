@@ -192,7 +192,7 @@ function displayProducts() {
             </div>
             <h4 class="fw-bold mb-3 text-start montserrat">R$ ${product.price.toFixed(2)}</h4>
             <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
-              <a href="detalhesproduto.html" class="btn btn-buy flex-grow-1"><i class="bi bi-cart-plus"></i> Comprar</a>
+              <a href="detalhesproduto.php" class="btn btn-buy flex-grow-1"><i class="bi bi-cart-plus"></i> Comprar</a>
               <button class="btn btn-outline-secondary btn-favorite"><i class="bi bi-heart"></i></button>
             </div>
           </div>
