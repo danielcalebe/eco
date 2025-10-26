@@ -22,4 +22,3 @@ $mysqli->set_charset("utf8");
 // Criar segunda variável $conn apontando para a mesma conexão
 $conn = $mysqli;
 
-echo "Conexão MySQL Aiven com mysqli e conn bem-sucedida!";
