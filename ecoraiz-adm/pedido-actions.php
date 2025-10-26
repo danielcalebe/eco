@@ -2,15 +2,7 @@
 session_start();
 if (!isset($_SESSION['admin'])) exit;
 
-// Conexão com o banco
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecoraiz";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) die("Falha na conexão: " . $conn->connect_error);
-
+include "db.php";
 // Evita notices
 $_POST = $_POST ?? [];
 $_GET = $_GET ?? [];
