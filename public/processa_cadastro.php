@@ -70,13 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($stmt->execute()) {
             $id_usuario = $stmt->insert_id;
 
-            $sqlPJ = "INSERT INTO cliente_juridico (id_usuario, cnpj, razao_social, responsavel)
+            $sqlPJ = "INSERT INTO cliente_juridico (id_usuario, cnpj, razao_social, nome_responsavel)
                       VALUES (?, ?, ?, ?)";
             $stmtPJ = $conn->prepare($sqlPJ);
             $stmtPJ->bind_param("isss", $id_usuario, $cnpj, $razao_social, $responsavel);
             $stmtPJ->execute();
 
-            echo "<div class='alert alert-success text-center'>Cadastro realizado com sucesso! Redirecionando...</div>";
+            echo "";
             echo "<script>setTimeout(() => { window.location.href='login.php'; }, 3000);</script>";
         } else {
             echo "<div class='alert alert-danger text-center'>Erro ao cadastrar empresa: {$stmt->error}</div>";

@@ -25,7 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['id_usuario'] = $usuario['id_usuario'];
                 $_SESSION['nome'] = $usuario['nome'];
                 $_SESSION['tipo_usuario'] = $usuario['tipo_usuario'];
-                header("Location: perfil.php"); // Redireciona para página principal
+
+                
+                header("Location: index.php"); // Redireciona para página principal
                 exit;
             } else {
                 $mensagem = "<div class='alert alert-danger text-center'>Senha incorreta!</div>";
@@ -44,6 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - EcoRaiz</title>
+      <?php include '../elements/head.php'; ?>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/cadastro.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -51,49 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg" style="background-color: #f3f8f1;">
-    <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+  <?php include '../elements/navbar.php'; ?>
 
-        <!-- Botão responsivo na extrema esquerda -->
-        <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Logo -->
-        <a class="navbar-brand mx-3" href="./public/index.php">
-            <img src="../img/logo.png" alt="Logo EcoRaiz" width="40">
-        </a>
-
-        <!-- Links do menu centralizados -->
-        <div class="collapse navbar-collapse justify-content-center order-1" id="navbarNav">
-            <ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-5 ">
-                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./Landing_Page/index.php"><i
-                            class="bi bi-house-door me-1"></i> Início</a></li>
-                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./catalogoprodutos.php"><i
-                            class="bi bi-shop me-1"></i> Loja</a></li>
-                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./doacoes.php"><i
-                            class="bi bi-recycle me-1"></i> Doações</a></li>
-                <li class="nav-item"><a class="nav-link d-flex align-items-center"
-                        href="./Landing_Page/index.php#sobre"><i class="bi bi-info-circle me-1"></i> Institucional</a>
-                </li>
-                <li class="nav-item"><a class="nav-link d-flex align-items-center"
-                        href="./Landing_Page/index.php#contato"><i class="bi bi-envelope me-1"></i> Contato</a></li>
-            </ul>
-        </div>
-
-        <!-- Área de login/perfil à direita -->
-        <div class="d-flex gap-3 align-items-center order-2">
-            <a href="doacao.php" class="btn btn-success px-3 rounded-pill d-flex align-items-center">
-                <i class="bi bi-heart-fill me-2"></i> Doar agora
-            </a>
-            <div class="d-flex flex-column align-items-center ms-2">
-                <a href="perfil.php"> <i class="bi bi-person-circle fs-2 mb-1" style="color:#1E5E2E;"></i></a>
-            </div>
-        </div>
-
-    </div>
-</nav>
 
 <section class="background-radial-gradient overflow-hidden">
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">

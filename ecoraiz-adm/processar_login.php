@@ -15,6 +15,8 @@ if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
 
+
+
 // Verifica se os campos foram enviados via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
@@ -57,4 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: login-adm.php");
     exit();
 }
+
+
+
+
+
 ?>
+
+
+
+
+

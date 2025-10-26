@@ -1,0 +1,123 @@
+Array
+(
+    [0] => Array
+        (
+            [id_produto] => 4
+            [nome] => Adubo Natural 1kg
+            [preco] => 12.00
+            [qtd_estoque] => 60
+            [avaliacao] => 4.5
+            [imagem] => 68f6bfc26fe5b.png
+        )
+
+    [1] => Array
+        (
+            [id_produto] => 4
+            [nome] => Adubo Natural 1kg
+            [preco] => 12.00
+            [qtd_estoque] => 60
+            [avaliacao] => 4.5
+            [imagem] => 68f6bfc2702ef.png
+        )
+
+    [2] => Array
+        (
+            [id_produto] => 4
+            [nome] => Adubo Natural 1kg
+            [preco] => 12.00
+            [qtd_estoque] => 60
+            [avaliacao] => 4.5
+            [imagem] => 68f6bfc2706ce.png
+        )
+
+    [3] => Array
+        (
+            [id_produto] => 4
+            [nome] => Adubo Natural 1kg
+            [preco] => 12.00
+            [qtd_estoque] => 60
+            [avaliacao] => 4.5
+            [imagem] => 68f6bfc27167e.png
+        )
+
+    [4] => Array
+        (
+            [id_produto] => 1
+            [nome] => Compost Premium 5L
+            [preco] => 25.50
+            [qtd_estoque] => 40
+            [avaliacao] => 4.8
+            [imagem] => produtos/compost_premium_5l.jpg
+        )
+
+    [5] => Array
+        (
+            [id_produto] => 5
+            [nome] => Fert
+            [preco] => 2315.00
+            [qtd_estoque] => 3271
+            [avaliacao] => 3.5
+            [imagem] => 68f6bfeb9e2c4.png
+        )
+
+    [6] => Array
+        (
+            [id_produto] => 5
+            [nome] => Fert
+            [preco] => 2315.00
+            [qtd_estoque] => 3271
+            [avaliacao] => 3.5
+            [imagem] => 68f6bfeb9e922.png
+        )
+
+    [7] => Array
+        (
+            [id_produto] => 5
+            [nome] => Fert
+            [preco] => 2315.00
+            [qtd_estoque] => 3271
+            [avaliacao] => 3.5
+            [imagem] => 68f6bfeb9ee76.jpg
+        )
+
+    [8] => Array
+        (
+            [id_produto] => 5
+            [nome] => Fert
+            [preco] => 2315.00
+            [qtd_estoque] => 3271
+            [avaliacao] => 3.5
+            [imagem] => 68f6bfeb9f429.png
+        )
+
+    [9] => Array
+        (
+            [id_produto] => 2
+            [nome] => Saco de Coleta 50L
+            [preco] => 7.90
+            [qtd_estoque] => 120
+            [avaliacao] => 4.2
+            [imagem] => 68f6c00967a73.png
+        )
+
+    [10] => Array
+        (
+            [id_produto] => 2
+            [nome] => Saco de Coleta 50L
+            [preco] => 7.90
+            [qtd_estoque] => 120
+            [avaliacao] => 4.2
+            [imagem] => 68f6c0096811f.png
+        )
+
+    [11] => Array
+        (
+            [id_produto] => 2
+            [nome] => Saco de Coleta 50L
+            [preco] => 7.90
+            [qtd_estoque] => 120
+            [avaliacao] => 4.2
+            [imagem] => 68f6c0096853f.png
+        )
+
+)

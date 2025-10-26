@@ -1,195 +1,52 @@
-const searchInput = document.getElementById("searchInput");
-const tbody = document.getElementById("produtosTableBody");
+document.addEventListener("DOMContentLoaded", () => {
+  const addBtn = document.getElementById("addProdutoBtn");
+  const tbody = document.getElementById("produtosTableBody");
 
-searchInput.addEventListener("input", () => {
-  const filtro = searchInput.value.toLowerCase();
+  // Adicionar produto
+  addBtn.addEventListener("click", () => {
+    const data = new FormData();
+    data.append("action", "add");
+    data.append("nome", document.getElementById("addNome").value);
+    data.append("descricao", document.getElementById("addDescricao").value);
+    data.append("qtd", document.getElementById("addQuantidade").value);
+    data.append("preco", document.getElementById("addPreco").value);
+    data.append("status", document.getElementById("addStatus").value);
+    data.append("categoria", document.getElementById("addCategoria").value);
+    data.append("imagem", document.getElementById("addCaminhoImagem").value);
+    data.append("unidade", document.getElementById("addUnidadeMedida").value);
 
-  Array.from(tbody.rows).forEach(row => {
-    const id = row.cells[0].innerText.toLowerCase();
-    const nome = row.cells[1].innerText.toLowerCase();
-    const descricao = row.cells[2].innerText.toLowerCase();
-    const quantidade = row.cells[3].innerText.toLowerCase();
-    const preco = row.cells[4].innerText.toLowerCase();
-    const status = row.cells[5].querySelector("span").innerText.toLowerCase();
-    const categoria = row.cells[6].innerText.toLowerCase();
-    const caminhoImagem = row.cells[7].innerText.toLowerCase();
-    const unidadeMedida = row.cells[8].innerText.toLowerCase();
-
-    if (
-      id.includes(filtro) ||
-      nome.includes(filtro) ||
-      descricao.includes(filtro) ||
-      quantidade.includes(filtro) ||
-      preco.includes(filtro) ||
-      status.includes(filtro) ||
-      categoria.includes(filtro) ||
-      caminhoImagem.includes(filtro) ||
-      unidadeMedida.includes(filtro)
-    ) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
-  });
-});
-
-const deleteBtn = document.getElementById('deleteSelectedBtn');
-let selecting = false;
-let rowsToDelete = [];
-let editingRow = null;
-
-// Atualizar IDs (apenas visual)
-function updateIDs() {
-  Array.from(tbody.rows).forEach((row, i) => {
-    row.cells[0].innerText = i + 1; // atualiza ID
-  });
-}
-
-// Adicionar / Editar Produto
-document.getElementById('addProdutoBtn').addEventListener('click', () => {
-  const nome = document.getElementById('addNome').value;
-  const descricao = document.getElementById('addDescricao').value;
-  const quantidade = document.getElementById('addQuantidade').value;
-  const preco = document.getElementById('addPreco').value;
-  const status = document.getElementById('addStatus').value;
-  const categoria = document.getElementById('addCategoria').value;
-  const caminhoImagem = document.getElementById('addCaminhoImagem').value;
-  const unidadeMedida = document.getElementById('addUnidadeMedida').value;
-
-  if (!nome || !descricao || !quantidade || !preco || !status || !categoria || !caminhoImagem || !unidadeMedida) {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  if (editingRow) {
-    editingRow.cells[1].innerText = nome;
-    editingRow.cells[2].innerText = descricao;
-    editingRow.cells[3].innerText = quantidade;
-    editingRow.cells[4].innerText = preco;
-    editingRow.cells[5].innerHTML = `<span class="${status === 'Ativo' ? 'status-ativo' : 'status-inativo'}">${status}</span>`;
-    editingRow.cells[6].innerText = categoria;
-    editingRow.cells[7].innerText = caminhoImagem;
-    editingRow.cells[8].innerText = unidadeMedida;
-    editingRow = null;
-  } else {
-    const newRow = document.createElement('tr');
-    const rowNumber = tbody.rows.length + 1;
-    newRow.innerHTML = `
-      <td>${rowNumber}</td>
-      <td>${nome}</td>
-      <td>${descricao}</td>
-      <td>${quantidade}</td>
-      <td>${preco}</td>
-      <td><span class="${status === 'Ativo' ? 'status-ativo' : 'status-inativo'}">${status}</span></td>
-      <td>${categoria}</td>
-      <td>${caminhoImagem}</td>
-      <td>${unidadeMedida}</td>
-      <td class="text-end">
-        <button class="btn btn-sm btn-editar"><i class="bi bi-pencil"></i></button>
-        <button class="btn btn-sm btn-excluir"><i class="bi bi-trash"></i></button>
-      </td>
-    `;
-    tbody.appendChild(newRow);
-  }
-
-  bootstrap.Modal.getInstance(document.getElementById('addProdutoModal')).hide();
-  document.getElementById('addProdutoForm').reset();
-});
-
-// Editar / Excluir individual
-tbody.addEventListener('click', (e) => {
-  const btn = e.target.closest('button');
-  if (!btn) return;
-  const row = btn.closest('tr');
-
-  if (btn.classList.contains('btn-excluir')) {
-    rowsToDelete = [row];
-    new bootstrap.Modal(document.getElementById('confirmDeleteModal')).show();
-  }
-
-  if (btn.classList.contains('btn-editar')) {
-    editingRow = row;
-    document.getElementById('addNome').value = row.cells[1].innerText;
-    document.getElementById('addDescricao').value = row.cells[2].innerText;
-    document.getElementById('addQuantidade').value = row.cells[3].innerText;
-    document.getElementById('addPreco').value = row.cells[4].innerText;
-    document.getElementById('addStatus').value = row.cells[5].querySelector("span").innerText;
-    document.getElementById('addCategoria').value = row.cells[6].innerText;
-    document.getElementById('addCaminhoImagem').value = row.cells[7].innerText;
-    document.getElementById('addUnidadeMedida').value = row.cells[8].innerText;
-    new bootstrap.Modal(document.getElementById('addProdutoModal')).show();
-  }
-});
-
-// Seleção e exclusão múltipla
-deleteBtn.addEventListener('click', () => {
-  if (!selecting) {
-    selecting = true;
-    deleteBtn.innerHTML = '<i class="bi bi-check-lg"></i> Confirmar Exclusão';
-
-    // Criar botão cancelar
-    if (!document.getElementById('cancelSelectionBtn')) {
-      const cancelBtn = document.createElement('button');
-      cancelBtn.id = 'cancelSelectionBtn';
-      cancelBtn.className = 'btn btn-outline-secondary btn-sm ms-2';
-      cancelBtn.innerText = 'Cancelar';
-      deleteBtn.after(cancelBtn);
-
-      cancelBtn.addEventListener('click', () => {
-        selecting = false;
-        deleteBtn.innerHTML = '<i class="bi bi-trash"></i> Apagar';
-        cancelBtn.remove();
-        Array.from(tbody.rows).forEach(row => {
-          const cb = row.querySelector('.row-checkbox');
-          if (cb) cb.remove();
-        });
+    fetch("produtos_actions.php", { method: "POST", body: data })
+      .then(res => res.text())
+      .then(response => {
+        if (response.trim() === "success") {
+          alert("Produto adicionado com sucesso!");
+          location.reload();
+        } else {
+          alert("Erro ao adicionar produto.");
+        }
       });
-    }
-
-    // Adicionar checkboxes
-    Array.from(tbody.rows).forEach(row => {
-      const cb = document.createElement('input');
-      cb.type = 'checkbox';
-      cb.className = 'row-checkbox';
-      cb.style.marginRight = '10px';
-      row.insertBefore(cb, row.cells[0]);
-    });
-
-  } else {
-    rowsToDelete = Array.from(tbody.querySelectorAll('.row-checkbox:checked')).map(cb => cb.closest('tr'));
-    if (rowsToDelete.length === 0) {
-      alert('Selecione pelo menos uma linha para excluir!');
-      return;
-    }
-    new bootstrap.Modal(document.getElementById('confirmDeleteModal')).show();
-  }
-});
-
-// Confirmar exclusão
-document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
-  rowsToDelete.forEach(r => r.remove());
-  rowsToDelete = [];
-  selecting = false;
-  deleteBtn.innerHTML = '<i class="bi bi-trash"></i> Apagar';
-  const cancelBtn = document.getElementById('cancelSelectionBtn');
-  if (cancelBtn) cancelBtn.remove();
-  Array.from(tbody.rows).forEach(row => {
-    const cb = row.querySelector('.row-checkbox');
-    if (cb) cb.remove();
   });
-  updateIDs();
-  bootstrap.Modal.getInstance(document.getElementById('confirmDeleteModal')).hide();
-});
 
-// Ordenar por ID
-let idDescending = true;
-document.getElementById('idHeader').addEventListener('click', () => {
-  const rows = Array.from(tbody.rows);
-  rows.sort((a, b) => {
-    const idA = parseInt(a.cells[0].innerText);
-    const idB = parseInt(b.cells[0].innerText);
-    return idDescending ? idB - idA : idA - idB;
+  // Excluir produto
+  tbody.addEventListener("click", e => {
+    if (e.target.closest(".btn-excluir")) {
+      const id = e.target.closest(".btn-excluir").dataset.id;
+      if (confirm("Deseja excluir este produto?")) {
+        const data = new FormData();
+        data.append("action", "delete");
+        data.append("id", id);
+
+        fetch("produtos_actions.php", { method: "POST", body: data })
+          .then(res => res.text())
+          .then(response => {
+            if (response.trim() === "success") {
+              alert("Produto excluído!");
+              location.reload();
+            } else {
+              alert("Erro ao excluir produto.");
+            }
+          });
+      }
+    }
   });
-  rows.forEach(r => tbody.appendChild(r));
-  idDescending = !idDescending;
 });

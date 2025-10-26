@@ -8,6 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doações - EcoRaiz</title>
+      <?php include '../elements/head.php'; ?>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -16,49 +18,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #f3f8f1;">
-        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+     <?php include '../elements/navbar.php'; ?>
 
-            <!-- Botão responsivo -->
-            <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Logo -->
-            <a class="navbar-brand mx-3" href="./Landing_Page/index.php">
-                <img src="../img/logo.png" alt="Logo EcoRaiz" width="40">
-            </a>
-
-            <!-- Links do menu centralizados -->
-            <div class="collapse navbar-collapse justify-content-center order-1" id="navbarNav">
-                <ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-5 ">
-                    <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./Landing_Page/index.php"><i
-                                class="bi bi-house-door me-1"></i> Início</a></li>
-                    <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./catalogoprodutos.php"><i
-                                class="bi bi-shop me-1"></i> Loja</a></li>
-                    <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./doacoes.php"><i
-                                class="bi bi-recycle me-1"></i> Doações</a></li>
-                    <li class="nav-item"><a class="nav-link d-flex align-items-center"
-                            href="./Landing_Page/index.php#sobre"><i class="bi bi-info-circle me-1"></i> Institucional</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link d-flex align-items-center"
-                            href="./Landing_Page/index.php#contato"><i class="bi bi-envelope me-1"></i> Contato</a></li>
-                </ul>
-            </div>
-
-            <!-- Área de login/perfil à direita -->
-            <div class="d-flex gap-3 align-items-center order-2">
-                <a href="doacao.php" class="btn btn-success px-3 rounded-pill d-flex align-items-center">
-                    <i class="bi bi-heart-fill me-2"></i> Doar agora
-                </a>
-                <div class="d-flex flex-column align-items-center ms-2">
-                    <a href="perfil.php"> <i class="bi bi-person-circle fs-2 mb-1" style="color:#1E5E2E;"></i></a>
-                </div>
-            </div>
-
-        </div>
-    </nav>
 
     <!-- Banner Principal -->
     <section class="banner">
@@ -139,7 +100,7 @@
     </section>
 
     <!-- Produtos Gerados -->
-    <section class="container mt-5 rounded-3" id="produtos-gerados" style="background-color: #517C58;">
+    <section class="container mt-5 rounded-3 mb-5" id="produtos-gerados" style="background-color: #517C58;">
         <h1 class="pt-4 text-center text-light fw-bold">Produtos Gerados</h1>
         <div class="container px-4 px-lg-6 mt-4">
             <div class="row gx-4 gx-lg-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
@@ -169,8 +130,57 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <?php include 'footer.php'; ?>
+   <!-- Footer -->
+  <footer class="text-center text-lg-start" style="background-color: #F2F7EC;">
+    <div class="container p-4">
+      <section class="">
+        <div class="row">
+          <div class="col-md-3 mx-auto mt-3">
+            <h1 class="text-uppercase mb-4 font-weight-bold">
+              Ecoraiz
+              <img src="../img/logo.png" alt="" width="50px">
+            </h1>
+            <p>Na EcoRaiz, oferecemos produtos naturais e sustentáveis, cuidando do meio ambiente e do seu bem-estar.</p>
+          </div>
+
+          <div class="col-md-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Produtos</h6>
+            <p>Fertilizantes</p>
+            <p>Equipamentos</p>
+            <p>Pecuária</p>
+            <p>Horta</p>
+          </div>
+
+          <div class="col-md-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Links Úteis</h6>
+            <p>Sua conta</p>
+            <p>Doe agora</p>
+            <p>Compre na loja</p>
+            <p>Ajuda</p>
+          </div>
+
+          <div class="col-md-4 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contato</h6>
+            <p>Belo Horizonte - MG</p>
+            <p>ecoraiz@contato.com</p>
+            <p>+55 31 3234-5675</p>
+          </div>
+        </div>
+      </section>
+      <hr class="my-3">
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <div class="col-md-7 text-center text-md-start">
+            <div class="p-3">© 2025 Copyright: <a href="#">www.ecoraiz.com</a></div>
+          </div>
+          <div class="col-md-5 text-center text-md-end">
+            <a class="btn btn-outline-light btn-floating m-1"><i class="bi bi-facebook"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/doacoes.js"></script>

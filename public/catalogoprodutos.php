@@ -1,378 +1,308 @@
+<?php
+// (Opcional) Controle de sessão
+// session_start();
+// if (!isset($_SESSION['usuario_logado'])) {
+//     header("Location: login.php");
+//     exit();
+// }
+
+
+// Consulta todas as categorias distintas no banco
+
+include "./db.php";
+$stmt_cat = $conn->prepare("SELECT DISTINCT categoria FROM produto ORDER BY categoria ASC");
+$stmt_cat->execute();
+$result_cat = $stmt_cat->get_result();
+$categorias = $result_cat->fetch_all(MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Catálogo de Produtos</title>
-  <!-- Bootstrap icons-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/catalogoprodutos.css">
-  <!-- Core theme CSS (includes Bootstrap)-->
-  <link href="../css/style.css" rel="stylesheet" />
+  <title>Catálogo de Produtos - EcoRaiz</title>
+  <?php include '../elements/head.php'; ?>
 
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/catalogoprodutos.css">
+  <link href="../css/style.css" rel="stylesheet" />
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg" style="background-color: #f3f8f1;">
-    <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+  <!-- NAVBAR -->
+    <?php include '../elements/navbar.php'; ?>
 
-        <!-- Botão responsivo na extrema esquerda -->
-        <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <!-- Logo -->
-        <a class="navbar-brand mx-3" href="./public/index.php">
-            <img src="../img/logo.png" alt="Logo EcoRaiz" width="40">
-        </a>
+  <!-- Header com Banner -->
+  <header class="px-lg-5 mt-lg-4">
+    <div id="ecoCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="../img/1.png" class="d-block w-100" style="max-height: 500px; object-fit: cover;" alt="Banner 1"></div>
+        <div class="carousel-item"><img src="../img/2.png" class="d-block w-100" style="max-height: 500px; object-fit: cover;" alt="Banner 2"></div>
+        <div class="carousel-item"><img src="../img/3.png" class="d-block w-100" style="max-height: 500px; object-fit: cover;" alt="Banner 3"></div>
+      </div>
 
-        <!-- Links do menu centralizados -->
-        <div class="collapse navbar-collapse justify-content-center order-1" id="navbarNav">
-            <ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-5 ">
-                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./public/index.php"><i
-                            class="bi bi-house-door me-1"></i> Início</a></li>
-                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./catalogoprodutos.php"><i
-                            class="bi bi-shop me-1"></i> Loja</a></li>
-                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="./doacoes.php"><i
-                            class="bi bi-recycle me-1"></i> Doações</a></li>
-                <li class="nav-item"><a class="nav-link d-flex align-items-center"
-                        href="./public/index.php#sobre"><i class="bi bi-info-circle me-1"></i> Institucional</a>
-                </li>
-                <li class="nav-item"><a class="nav-link d-flex align-items-center"
-                        href="./public/index.php#contato"><i class="bi bi-envelope me-1"></i> Contato</a></li>
-            </ul>
-        </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#ecoCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span><span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#ecoCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span><span class="visually-hidden">Próximo</span>
+      </button>
 
-        <!-- Área de login/perfil à direita -->
-        <div class="d-flex gap-3 align-items-center order-2">
-            <a href="doacao.php" class="btn btn-success px-3 rounded-pill d-flex align-items-center">
-                <i class="bi bi-heart-fill me-2"></i> Doar agora
-            </a>
-            <div class="d-flex flex-column align-items-center ms-2">
-                <a href="perfil.php"> <i class="bi bi-person-circle fs-2 mb-1" style="color:#1E5E2E;"></i></a>
-            </div>
-        </div>
-
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#ecoCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#ecoCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#ecoCarousel" data-bs-slide-to="2"></button>
+      </div>
     </div>
-</nav>
+  </header>
 
-  <!-- Header-->
-  <div class="px-lg-5 mt-lg-4">
-    <div class=" my-1">
-
-      <ul class="nav nav-pills">
-        <!-- Dropdown Todas as Categorias -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-success fw-bold" data-bs-toggle="dropdown" href="#" role="button"
-            aria-expanded="false">
-            TODAS AS CATEGORIAS
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Ofertas</a></li>
-            <li><a class="dropdown-item" href="#">Jardim</a></li>
-            <li><a class="dropdown-item" href="#">Sementes</a></li>
-          </ul>
-        </li>
-
-        <!-- Links de categorias -->
-        <li class="nav-item">
-          <a class="nav-link" href="#">Irrigação</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Defensivos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Equipamentos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Fertilizantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pecuária</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Horta</a>
-        </li>
-      </ul>
-    </div>
-
-    <header>
-      <div id="ecoCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-
-          <!-- Slide 1 -->
-          <div class="carousel-item active">
-            <img src="../img/1.png" class="d-block w-100" alt="Banner 1" style="max-height: 500px; object-fit: cover;">
-
+  <!-- Filtros -->
+  <section class="mt-5">
+    <div class="container px-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control" id="searchInput" placeholder="Pesquisar produtos...">
           </div>
-
-          <!-- Slide 2 -->
-          <div class="carousel-item">
-            <img src="../img/2.png" class="d-block w-100" alt="Banner 2" style="max-height: 500px; object-fit: cover;">
-
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="carousel-item">
-            <img src="../img/3.png" class="d-block w-100" alt="Banner 3" style="max-height: 500px; object-fit: cover;">
-
-          </div>
-
         </div>
 
-        <!-- Controles -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#ecoCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-          <span class="visually-hidden">Anterior</span>
-        </button>
 
-        <button class="carousel-control-next" type="button" data-bs-target="#ecoCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-          <span class="visually-hidden">Próximo</span>
-        </button>
 
-        <!-- Indicadores (bolinhas) -->
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#ecoCarousel" data-bs-slide-to="0" class="active"></button>
-          <button type="button" data-bs-target="#ecoCarousel" data-bs-slide-to="1"></button>
-          <button type="button" data-bs-target="#ecoCarousel" data-bs-slide-to="2"></button>
+<div class="col-md-3">
+  <div class="input-group">
+    <span class="input-group-text"><i class="bi bi-tags"></i></span>
+    <select class="form-select" id="categoryFilter">
+      <option value="">Todas as categorias</option>
+      <?php foreach ($categorias as $cat): ?>
+        <option value="<?= htmlspecialchars($cat['categoria']) ?>"><?= htmlspecialchars(ucfirst($cat['categoria'])) ?></option>
+      <?php endforeach; ?>
+    </select>
+  </div>
+</div>
+
+
+        <div class="col-md-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+            <select class="form-select" id="priceFilter">
+              <option value="">Todos os preços</option>
+              <option value="0-50">Até R$ 50</option>
+              <option value="51-100">R$ 51 - R$ 100</option>
+              <option value="101-200">R$ 101 - R$ 200</option>
+              <option value="201-9999">Acima de R$ 200</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-star-fill"></i></span>
+            <select class="form-select" id="ratingFilter">
+              <option value="">Todas as avaliações</option>
+              <option value="5">5 estrelas</option>
+              <option value="4">4 estrelas ou mais</option>
+              <option value="3">3 estrelas ou mais</option>
+            </select>
+          </div>
         </div>
       </div>
-    </header>
-
-
-
-    <!-- Certifique-se de incluir o Bootstrap Icons no <head> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-    <!-- Seção de pesquisa com padding menor -->
-    <section class="mt-5 ">
-      <div class="container px-4 px-lg-4">
-        <div class="row g-3 align-items-center">
-
-          <!-- Campo de pesquisa com ícone -->
-          <div class="col-md-4">
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-search"></i></span>
-              <input type="text" class="form-control border-input" id="searchInput" placeholder="Pesquisar produtos...">
-            </div>
-          </div>
-
-          <!-- Filtro de categoria com ícone -->
-          <div class="col-md-3">
-            <div class="input-group">
-              <span class="input-group-text "><i class="bi bi-tags"></i></span>
-              <select class="form-select border-input " id="categoryFilter">
-                <option value="">Todas as categorias</option>
-                <option value="fertilizantes">Fertilizantes</option>
-                <option value="sementes">Sementes</option>
-                <option value="horta">Horta</option>
-                <option value="outros">Outros</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Filtro de preço com ícone -->
-          <div class="col-md-3">
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
-              <select class="form-select border-input" id="priceFilter">
-                <option value="">Todos os preços</option>
-                <option value="0-50">Até R$ 50</option>
-                <option value="51-100">R$ 51 - R$ 100</option>
-                <option value="101-200">R$ 101 - R$ 200</option>
-                <option value="201-9999">Acima de R$ 200</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Filtro de avaliação com ícone -->
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-star-fill"></i></span>
-              <select class="form-select border-input" id="ratingFilter">
-                <option value="">Todas as avaliações</option>
-                <option value="5">5 estrelas</option>
-                <option value="4">4 estrelas ou mais</option>
-                <option value="3">3 estrelas ou mais</option>
-              </select>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    <!-- Section-->
-    <section class="" id="catalogo">
-      <div class="container px-4 px-lg-6 mt-4 ">
-        <div class="row gx-4 gx-lg-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
-
-          <!--Produtos adiconados com JS - catalogoprodutos.js-->
-
-          <!-- Exemplo -->
-          <div class="col mb-4">
-            <div class="card product-card h-100 text-center">
-              <img class="card-img-top p-3 " src="../img/produto1.png" alt="Produto 2">
-              <div class="card-body d-flex flex-column">
-                <h6 class="card-title text-start">Adubo de Milho 10kg Fastpower</h6>
-                <p class="card-subtitle text-muted mb-2 text-start category-text">Categoria</p>
-                <div class="rating mb-2 text-start">
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <small class="text-muted">4,5</small>
-                  <small class="text-muted">(8 Comentários)</small>
-                </div>
-                <h4 class="fw-bold mb-3 text-start montserrat">R$ 50.00</h4>
-                <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
-                  <button class="btn btn-buy flex-grow-1"><i class="bi bi-cart-plus"></i> Comprar</button>
-                  <button class="btn btn-outline-secondary btn-favorite"><i class="bi bi-heart"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        
-          
-        </div>
-      </div>
-    </section>
-
-    <div class="d-flex justify-content-center mt-4">
-      <nav>
-        <ul class="pagination" id="pagination"></ul>
-      </nav>
     </div>
+  </section>
+
+  <!-- Catálogo -->
+  <section id="catalogo">
+    <div class="container px-4 mt-4">
+      <div class="row gx-4 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
+        <!-- Produtos serão carregados via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Paginação -->
+  <div class="d-flex justify-content-center mt-4">
+    <nav><ul class="pagination" id="pagination"></ul></nav>
   </div>
 
+  <!-- Footer -->
+  <footer class="text-center text-lg-start" style="background-color: #F2F7EC;">
+    <div class="container p-4">
+      <section class="">
+        <div class="row">
+          <div class="col-md-3 mx-auto mt-3">
+            <h1 class="text-uppercase mb-4 font-weight-bold">
+              Ecoraiz
+              <img src="../img/logo.png" alt="" width="50px">
+            </h1>
+            <p>Na EcoRaiz, oferecemos produtos naturais e sustentáveis, cuidando do meio ambiente e do seu bem-estar.</p>
+          </div>
 
-   <!-- Footer -->
-    <footer class="text-center text-lg-start " style="background-color: #F2F7EC; ">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-            <!-- Section: Links -->
-            <section class="">
-                <!--Grid row-->
-                <div class="row">
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                        <h1 class="text-uppercase mb-4 font-weight-bold">
-                            Ecoraiz
-                            <img src="../img/logo.png" alt="" width="50px">
-                        </h1>
-                        <p>
-                            Na EcoRaiz, oferecemos produtos naturais e sustentáveis,
-                             cuidando do meio ambiente e do seu bem-estar em cada detalhe
-                        </p>
-                    </div>
-                    <!-- Grid column -->
+          <div class="col-md-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Produtos</h6>
+            <p>Fertilizantes</p>
+            <p>Equipamentos</p>
+            <p>Pecuária</p>
+            <p>Horta</p>
+          </div>
 
-                    <hr class="w-100 clearfix d-md-none" />
+          <div class="col-md-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Links Úteis</h6>
+            <p>Sua conta</p>
+            <p>Doe agora</p>
+            <p>Compre na loja</p>
+            <p>Ajuda</p>
+          </div>
 
-                    <!-- Grid column -->
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                        <h6 class="text-uppercase mb-4 font-weight-bold">Produtos</h6>
-                        <p>
-                            <a class="">Fertilizantes</a>
-                        </p>
-                        <p>
-                            <a class="">Equipamentos</a>
-                        </p>
-                        <p>
-                            <a class="">Pecuária</a>
-                        </p>
-                        <p>
-                            <a class="">Horta</a>
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
-                    <hr class="w-100 clearfix d-md-none" />
-
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                        <h6 class="text-uppercase mb-4 font-weight-bold">
-                            Links Úteis
-                        </h6>
-                        <p>
-                            <a class="">Sua conta</a>
-                        </p>
-                        <p>
-                            <a class="">Doe agora</a>
-                        </p>
-                        <p>
-                            <a class="">Compre na loja</a>
-                        </p>
-                        <p>
-                            <a class="">Ajuda</a>
-                        </p>
-                    </div>
-
-                    <!-- Grid column -->
-                    <hr class="w-100 clearfix d-md-none" />
-
-                    <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                        <h6 class="text-uppercase mb-4 font-weight-bold">Contato</h6>
-                        <p><i class="fas fa-home mr-3"></i> Belo Horizonte - MG, Brasil</p>
-                        <p><i class="fas fa-envelope mr-3"></i> ecoraiz@contato.com</p>
-                        <p><i class="fas fa-phone mr-3"></i> + 55 31 3234 5675</p>
-                        <p><i class="fas fa-print mr-3"></i> + 55 31 3234 5672</p>
-                    </div>
-                    <!-- Grid column -->
-                </div>
-                <!--Grid row-->
-            </section>
-            <!-- Section: Links -->
-
-            <hr class="my-3">
-
-            <!-- Section: Copyright -->
-            <section class="p-3 pt-0">
-                <div class="row d-flex align-items-center">
-                    <!-- Grid column -->
-                    <div class="col-md-7 col-lg-8 text-center text-md-start">
-                        <!-- Copyright -->
-                        <div class="p-3">
-                            © 2025 Copyright:
-                            <a class="" href="">www.ecoraiz.com</a>
-                        </div>
-                        <!-- Copyright -->
-                    </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
-                        <!-- Facebook -->
-                        <a class="btn btn-outline-light btn-floating m-1" class="" role="button"><i
-                                class="bi bi-facebook"></i>
-                        </a>
-
-                        <!-- Twitter -->
-                        <a class="btn btn-outline-light btn-floating m-1" class="" role="button"><i
-                                class="bi bi-twitter"></i></a>
-
-                        <!-- Google -->
-                        <a class="btn btn-outline-light btn-floating m-1" class="" role="button"><i
-                                class="bi bi-google"></i></a>
-
-                        <!-- Instagram -->
-                        <a class="btn btn-outline-light btn-floating m-1" class="" role="button"><i
-                                class="bi bi-instagram"></i></a>
-                    </div>
-                    <!-- Grid column -->
-                </div>
-            </section>
+          <div class="col-md-4 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contato</h6>
+            <p>Belo Horizonte - MG</p>
+            <p>ecoraiz@contato.com</p>
+            <p>+55 31 3234-5675</p>
+          </div>
         </div>
-        <!-- Grid container -->
-    </footer>
+      </section>
+      <hr class="my-3">
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <div class="col-md-7 text-center text-md-start">
+            <div class="p-3">© 2025 Copyright: <a href="#">www.ecoraiz.com</a></div>
+          </div>
+          <div class="col-md-5 text-center text-md-end">
+            <a class="btn btn-outline-light btn-floating m-1"><i class="bi bi-facebook"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </footer>
 
-  <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Core theme JS-->
-  <script src="../js/catalogoprodutos.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script do catálogo -->
+  <script>
+    let currentPage = 1;
+const productsPerPage = 10;
+let allProducts = [];
+
+// Carrega produtos do servidor PHP
+async function loadProducts() {
+  try {
+    console.log("Iniciando carregamento de produtos...");
+    const search = document.getElementById("searchInput").value;
+    const category = document.getElementById("categoryFilter").value;
+    const price = document.getElementById("priceFilter").value;
+    const rating = document.getElementById("ratingFilter").value;
+
+    const params = new URLSearchParams({ search, categoria: category, preco: price, avaliacao: rating });
+    console.log("Carregando produtos com parâmetros:", Object.fromEntries(params));
+
+const response = await fetch(`get_produtos.php?${params}`);
+      const data = await response.json();
+      
+    console.log("Resposta do servidor:", data);
+
+    if (!Array.isArray(data)) {
+      console.error("Erro: resposta não é um array", data);
+      allProducts = [];
+    } else {
+      allProducts = data;
+    }
+
+    currentPage = 1;
+    displayProducts();
+  } catch (err) {
+    console.error("Erro ao carregar produtos:", err);
+  }
+}
+
+
+// Exibe os produtos da página atual
+function displayProducts() {
+  const totalPages = Math.ceil(allProducts.length / productsPerPage);
+  const start = (currentPage - 1) * productsPerPage;
+  const end = start + productsPerPage;
+  const paginated = allProducts.slice(start, end);
+
+  const catalog = document.querySelector("#catalogo .row");
+  catalog.innerHTML = "";
+
+  if (paginated.length === 0) {
+    catalog.innerHTML = `<p class="text-center text-muted">Nenhum produto encontrado.</p>`;
+    return;
+  }
+
+  paginated.forEach(product => {
+    // Garantir valores válidos
+    const preco = parseFloat(product.preco) || 0;
+    const nome = product.nome || "Produto sem nome";
+    const imagem = product.imagem || "sem-imagem.jpg";
+    const avaliacao = product.avaliacao || 0;
+    const categoria_produto = product.categoria || "";
+
+    catalog.innerHTML += `
+      <div class="col mb-4">
+        <div class="card product-card h-100 text-center">
+          <img class="card-img-top p-3 img-card" src="../ecoraiz-adm/img/Produtos/${imagem}" alt="${nome}">
+          <div class="card-body d-flex flex-column">
+            <h6 class="card-title text-start">${nome}</h6>
+            <p class="card-subtitle text-muted mb-2 text-start">${categoria_produto}</p>
+            <div class="rating mb-2 text-start">
+              <i class="bi bi-star-fill text-warning"></i>
+              <small class="text-muted">${avaliacao}</small>
+            </div>
+            <h4 class="fw-bold mb-3 text-start montserrat">R$ ${preco.toFixed(2)}</h4>
+            <div class="mt-auto d-flex justify-content-between align-items-center gap-2">
+              <a href="detalhesproduto.php?id=${product.id_produto}" class="btn btn-buy flex-grow-1">
+                <i class="bi bi-cart-plus"></i> Comprar
+              </a>
+              <button class="btn btn-outline-secondary btn-favorite">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  renderPagination(totalPages);
+}
+
+// Paginação
+function renderPagination(totalPages) {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    pagination.innerHTML += `
+      <li class="page-item ${i === currentPage ? "active" : ""}">
+        <a class="page-link" href="#">${i}</a>
+      </li>
+    `;
+  }
+
+  document.querySelectorAll(".page-link").forEach((link, index) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      currentPage = index + 1;
+      displayProducts();
+    });
+  });
+}
+
+// Eventos de filtro
+document.getElementById("searchInput").addEventListener("input", loadProducts);
+document.getElementById("categoryFilter").addEventListener("change", loadProducts);
+document.getElementById("priceFilter").addEventListener("change", loadProducts);
+document.getElementById("ratingFilter").addEventListener("change", loadProducts);
+
+// Inicializa
+loadProducts();
+
+  </script>
 </body>
-
 </html>

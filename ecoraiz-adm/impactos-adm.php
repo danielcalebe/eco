@@ -1,172 +1,276 @@
 <?php
-// impactos-adm.php
 session_start();
+if (!isset($_SESSION['admin'])) {
+    header("Location: login-adm.php");
+    exit;
+}
 
-// (Opcional) Verificação de login do admin:
- if (!isset($_SESSION['admin'])) {
-     header("Location: login-adm.php");
-     exit;
- }
+// Conexão com o banco
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ecoraiz";
 
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) die("Falha na conexão: " . $conn->connect_error);
 
-// Aqui futuramente você pode incluir a conexão com o banco de dados:
-// include_once("conexao.php");
+// Buscar todos os impactos com nome do funcionário e doação
+$sql = "
+    SELECT 
+        i.id_impacto,
+        i.qtd_fertilizante_gerado,
+        i.medida_impacto,
+        i.descricao_impacto,
+        i.data,
+        f.nome_funcionario AS funcionario,
+        d.id_doacao
+    FROM impacto i
+    LEFT JOIN funcionario f ON i.id_funcionario = f.id_funcionario
+    LEFT JOIN doacao d ON i.id_doacao = d.id_doacao
+    ORDER BY i.id_impacto DESC
+";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel Admin - Impactos</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/styles-adm.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Admin - Impactos</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/styles-adm.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
-  <div class="sidebar">
+<div class="menu-toggle" id="menu-toggle">
+  <i class="bi bi-list"></i>
+</div>
+
+<div class="sidebar" id="sidebar">
     <div class="profile">
-      <img src="./img/logo-white.png" alt="Admin">
+        <img src="./img/logo-white.png" alt="Admin">
     </div>
-    <a href="painel-adm.php" class="active"><i class="bi bi-house-door"></i> Home</a>
+    <a href="painel-adm.php"><i class="bi bi-house-door"></i> Home</a>
     <a href="doacao-adm.php"><i class="bi bi-box2-heart"></i> Doações</a>
     <a href="pedidos-adm.php"><i class="bi bi-basket"></i> Pedidos</a>
-    <a href="impactos-adm.php"><i class="bi bi-bar-chart-line"></i> Impactos</a>
-    <a href="cliente-adm.php  " ><i class="bi bi-people"></i> Clientes</a>
-    <a href="produtos-adm.php" ><i class="bi bi-bag"></i> Produtos</a>
-        <a href="funcionario-adm.php" ><i class="bi bi-bag"></i> Funcionário</a>
-            <a href="logout.php" class="text-danger"><i class="bi bi-box-arrow-right"></i> Sair</a>
+    <a href="impactos-adm.php"class="active" ><i class="bi bi-bar-chart-line"></i> Impactos</a>
+    <a href="cliente-adm.php" ><i class="bi bi-people"></i> Clientes</a>
+    <a href="produtos-adm.php"><i class="bi bi-bag"></i> Produtos</a>
+    <a href="funcionario-adm.php"><i class="bi bi-person"></i> Funcionário</a>
+    <a href="logout.php" class="text-danger"><i class="bi bi-box-arrow-right"></i> Sair</a>
+</div>
 
-  </div>
-  <div class="content">
+<div class="content ml-2 my-4">
     <h3 class="fw-bold mb-4">Impactos</h3>
-
-    <div class="table-card">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-          <h6 class="fw-bold mb-0">Impactos</h6>
-          <small class="text-muted">As informações sobre impactos aparecerão aqui</small>
+    <div class="d-flex justify-content-end gap-4 mb-3">
+        <div class="mb-3" style="max-width:400px;">
+            <div class="input-group border border-2">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar impacto por ID, funcionário ou doação">
+            </div>
         </div>
-        <div class="d-flex gap-2">
-          <button class="btn btn-outline-danger btn-sm" id="deleteSelectedBtn"><i class="bi bi-trash"></i> Apagar</button>
-          <button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addImpactoModal">
+        <button class="btn btn-dark mb-3" data-bs-toggle="modal" data-bs-target="#impactoModal">
             <i class="bi bi-plus-lg"></i> Adicionar Impacto
-          </button>
-        </div>
-      </div>
+        </button>
+    </div>
 
-      <div class="mb-3">
-        <div class="input-group">
-          <span class="input-group-text" id="search-addon"><i class="bi bi-search"></i></span>
-          <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar por doador ou impacto..." aria-label="Pesquisar" aria-describedby="search-addon">
-        </div>
-      </div>
-
-      <div class="table-responsive">
-        <table class="table table-bordered align-middle text-center">
-          <thead class="table-light">
+    <table class="table table-bordered align-middle text-center">
+        <thead class="table-light">
             <tr>
-              <th id="idHeader" style="cursor:pointer">ID <i class="bi bi-arrow-down-up"></i></th>
-              <th>Id Doador</th>
-              <th>Quantidade total</th>
-              <th>Fertilizante gerado</th>
-              <th>Impacto</th>
-              <th>Observações</th>
-              <th>Ações</th>
+                <th>ID</th>
+                <th>Fertilizante Gerado</th>
+                <th>Medida</th>
+                <th>Descrição</th>
+                <th>Data</th>
+                <th>Funcionário</th>
+                <th>ID Doação</th>
+                <th>Ações</th>
             </tr>
-          </thead>
-          <tbody id="impactosTableBody">
+        </thead>
+        <tbody id="impactosTableBody">
             <?php
-            // Exemplo de dados fixos — futuramente substitua pelo banco de dados
-            $impactos = [
-              ["id" => 1, "id_doador" => 5, "quantidade" => "10kg", "fertilizante" => "Composto orgânico", "impacto" => "Redução CO2", "obs" => "Entrega concluída"],
-              ["id" => 2, "id_doador" => 8, "quantidade" => "5kg", "fertilizante" => "Húmus de minhoca", "impacto" => "Solo fértil", "obs" => "Aguardando entrega"]
-            ];
-
-            foreach ($impactos as $imp) {
-              echo "<tr>
-                      <td>{$imp['id']}</td>
-                      <td>{$imp['id_doador']}</td>
-                      <td>{$imp['quantidade']}</td>
-                      <td>{$imp['fertilizante']}</td>
-                      <td>{$imp['impacto']}</td>
-                      <td>{$imp['obs']}</td>
-                      <td class='text-end'>
-                        <button class='btn btn-sm btn-editar'><i class='bi bi-pencil'></i></button>
-                        <button class='btn btn-sm btn-excluir'><i class='bi bi-trash'></i></button>
-                      </td>
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr id='row-{$row['id_impacto']}'>
+                        <td>{$row['id_impacto']}</td>
+                        <td>{$row['qtd_fertilizante_gerado']}</td>
+                        <td>{$row['medida_impacto']}</td>
+                        <td>{$row['descricao_impacto']}</td>
+                        <td>{$row['data']}</td>
+                        <td>" . ($row['funcionario'] ?? '-') . "</td>
+                        <td>{$row['id_doacao']}</td>
+                        <td>
+                            <button class='btn btn-sm btn-warning editBtn' data-id='{$row['id_impacto']}'><i class='bi bi-pencil'></i></button>
+                            <button class='btn btn-sm btn-danger deleteBtn' data-id='{$row['id_impacto']}'><i class='bi bi-trash'></i></button>
+                        </td>
                     </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='8'>Nenhum impacto encontrado</td></tr>";
             }
             ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+        </tbody>
+    </table>
+</div>
 
-  <!-- Modal Adicionar Impacto -->
-  <div class="modal fade" id="addImpactoModal" tabindex="-1" aria-labelledby="addImpactoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+<!-- Modal -->
+<div class="modal fade" id="impactoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="impactoForm">
         <div class="modal-header">
-          <h5 class="modal-title" id="addImpactoModalLabel">Adicionar Impacto</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          <h5 class="modal-title" id="modalTitle">Adicionar Impacto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <form id="addImpactoForm">
-            <div class="mb-3">
-              <label class="form-label">Id Doador</label>
-              <input type="number" id="addIdDoador" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Quantidade total</label>
-              <input type="text" id="addQuantidadeTotal" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Fertilizante gerado</label>
-              <input type="text" id="addFertilizante" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Impacto</label>
-              <input type="text" id="addImpacto" class="form-control">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Observações</label>
-              <input type="text" id="addObservacoes" class="form-control">
-            </div>
-          </form>
+          <input type="hidden" name="id_impacto" id="id_impacto">
+
+          <div class="mb-3">
+            <label class="form-label">Quantidade de Fertilizante Gerado</label>
+            <input type="number" step="0.01" class="form-control" name="qtd_fertilizante_gerado" id="qtd_fertilizante_gerado" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Medida do Impacto</label>
+            <input type="text" class="form-control" name="medida_impacto" id="medida_impacto" placeholder="Ex: kg, toneladas" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Descrição</label>
+            <textarea class="form-control" name="descricao_impacto" id="descricao_impacto" rows="3" required></textarea>
+          </div>
+
+        <input type="hidden" name="data" id="data" value="<?php echo date('Y-m-d'); ?>">
+
+
+          <div class="mb-3">
+            <label class="form-label">ID Funcionário</label>
+            <input type="number" class="form-control" name="id_funcionario" id="id_funcionario" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">ID Doação</label>
+            <input type="number" class="form-control" name="id_doacao" id="id_doacao" required>
+          </div>
         </div>
+
         <div class="modal-footer">
+          <button type="submit" class="btn btn-dark">Salvar</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-dark" id="addImpactoBtn">Adicionar</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
+</div>
 
-  <!-- Modal Confirmação Excluir -->
-  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title">Confirmar Exclusão</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
-        </div>
-        <div class="modal-body">
-          <p>Deseja excluir esta(s) linha(s)?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Sim</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Salvar impacto
+    $('#impactoForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'impacto-actions.php',
+            type: 'POST',
+            data: $(this).serialize() + '&action=save',
+            success: function(response) {
+                if(response.error){
+                    alert(response.error);
+                } else {
+                    // Fecha modal
+                    var modalEl = document.getElementById('impactoModal');
+                    var modal = bootstrap.Modal.getInstance(modalEl);
+                    modal.hide();
+                    // Recarrega a página
+                    location.reload();
+                }
+            }
+        });
+    });
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./scripts/impactos-adm.js"></script>
+    // Editar impacto
+    $(document).on('click', '.editBtn', function() {
+        let id = $(this).data('id');
+        $.ajax({
+            url: 'impacto-actions.php',
+            type: 'GET',
+            data: { action: 'get', id_impacto: id },
+            dataType: 'json',
+            success: function(data) {
+                $('#id_impacto').val(data.id_impacto);
+                $('#qtd_fertilizante_gerado').val(data.qtd_fertilizante_gerado);
+                $('#medida_impacto').val(data.medida_impacto);
+                $('#descricao_impacto').val(data.descricao_impacto);
+                $('#id_funcionario').val(data.id_funcionario);
+                $('#id_doacao').val(data.id_doacao);
+                $('#modalTitle').text('Editar Impacto');
+                var modalEl = document.getElementById('impactoModal');
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            },
+            error: function(err) {
+                console.log('Erro ao buscar impacto:', err);
+            }
+        });
+    });
+
+    // Deletar impacto
+    $(document).on('click', '.deleteBtn', function() {
+        if (confirm('Tem certeza que deseja apagar este impacto?')) {
+            let id = $(this).data('id');
+            $.ajax({
+                url: 'impacto-actions.php',
+                type: 'POST',
+                data: { action: 'delete', id_impacto: id },
+                success: function(response) {
+                    if(response.error){
+                        alert(response.error);
+                    } else {
+                        // Recarrega a página após exclusão
+                        location.reload();
+                    }
+                }
+            });
+        }
+    });
+
+    // Pesquisa em tempo real
+    $('#searchInput').on('keyup', function() {
+        var value = $(this).val().toLowerCase();
+        $('#impactosTableBody tr').filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+
+    // Ordenar tabela pelo ID
+    let asc = true;
+    $('#idHeader').click(function() {
+        let rows = $('#impactosTableBody tr').get();
+        rows.sort(function(a, b) {
+            let A = parseInt($(a).children('td').eq(0).text());
+            let B = parseInt($(b).children('td').eq(0).text());
+            return asc ? A - B : B - A;
+        });
+        $.each(rows, function(index, row) {
+            $('#impactosTableBody').append(row);
+        });
+        asc = !asc;
+    });
+
+    // Sidebar toggle
+    const toggleButton = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
+});
+
+</script>
+
 </body>
-
 </html>
+
+<?php $conn->close(); ?>

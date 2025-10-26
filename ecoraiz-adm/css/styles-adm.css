@@ -12,6 +12,7 @@
       left: 0;
       top: 0;
       padding-top: 30px;
+      
     }
 
     .sidebar .profile {
@@ -76,6 +77,60 @@
       border-radius: 12px;
       font-size: 0.85rem;
     }
+
+
+    /* Estilo base da sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 12px 
+  ;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+
+
+/* Toggle menu icon */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 200px;
+    z-index: 998;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
 
     .status-cancelado {
       background-color: #fff3cd;
