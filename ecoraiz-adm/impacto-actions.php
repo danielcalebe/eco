@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Ativa erros detalhados
 
-$conn = new mysqli("localhost", "root", "", "ecoraiz");
+include "db.php";
 $conn->set_charset("utf8");
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
