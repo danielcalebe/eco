@@ -1,14 +1,7 @@
 <?php
 session_start();
 
-// Configurações de conexão
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecoraiz";
-
-// Criar conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
+include "db.php";
 
 // Verificar conexão
 if ($conn->connect_error) {
