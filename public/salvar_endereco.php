@@ -3,17 +3,7 @@
 header('Content-Type: application/json');
 session_start();
 
-// Conexão com o banco
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecoraiz";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'error' => 'Falha na conexão: ' . $conn->connect_error]);
-    exit;
-}
+include './db.php';
 
 // Recebe os dados JSON
 $input = json_decode(file_get_contents('php://input'), true);
