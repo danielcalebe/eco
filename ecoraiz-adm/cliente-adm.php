@@ -6,14 +6,7 @@ if (!isset($_SESSION['admin'])) {
 }
 
 // Conexão com o banco
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecoraiz";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) die("Falha na conexão: " . $conn->connect_error);
-
+include "db.php";
 // Buscar todos os usuários com dados de clientes PF e PJ
 $sql = "
 SELECT 
