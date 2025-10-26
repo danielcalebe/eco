@@ -1,19 +1,25 @@
 <?php
-// Arquivo: db.php
-// Conexão com o banco de dados MySQL
+$host = getenv('ecoraiz-danielcalebe719-2b82.f.aivencloud.com');      // host do Aiven
+$user = getenv('avnadmin');      // usuário do Aiven
+$pass = getenv('AVNS_sexjgLJAxB2JrKZ_eQH');      // senha
+$db   = getenv('defaultdb');      // nome do banco
+$port = getenv('25538') ?: 3306; // porta padrão 3306
 
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "ecoraiz";
+$mysqli = mysqli_init();
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Se precisar de SSL (recomendado pelo Aiven)
+$ssl_ca   = getenv('DB_SSL_CA');
+$ssl_cert = getenv('DB_SSL_CERT');
+$ssl_key  = getenv('DB_SSL_KEY');
 
-// Verifica a conexão
-if ($conn->connect_error) {
-    die("❌ Falha na conexão: " . $conn->connect_error);
+if ($ssl_ca && $ssl_cert && $ssl_key) {
+    $mysqli->ssl_set($ssl_key, $ssl_cert, $ssl_ca, null, null);
 }
 
-// Define charset para evitar erros com acentuação
-$conn->set_charset("utf8mb4");
-?>
+$mysqli->real_connect($host, $user, $pass, $db, $port);
+
+if ($mysqli->connect_error) {
+    die("Erro de conexão: " . $mysqli->connect_error);
+}
+
+echo "Conexão MySQL Aiven com mysqli bem-sucedida!";
