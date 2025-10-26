@@ -2,10 +2,7 @@
 session_start();
 
 // Conexão com o banco
-$conn = new mysqli("localhost", "root", "", "ecoraiz");
-if ($conn->connect_error) {
-  die("Falha na conexão: " . $conn->connect_error);
-}
+include './db.php';
 
 // Obtém o código da doação da URL
 $codigo = $_GET['codigo'] ?? null;
