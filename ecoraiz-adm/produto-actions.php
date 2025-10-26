@@ -6,17 +6,7 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-// Conexão com o banco
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecoraiz";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    echo json_encode(['error' => 'Falha na conexão: ' . $conn->connect_error]);
-    exit;
-}
-
+include "db.php";
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
 
 // Função para salvar imagens do produto (até 4)
