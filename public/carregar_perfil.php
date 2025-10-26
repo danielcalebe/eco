@@ -2,10 +2,7 @@
 header('Content-Type: application/json');
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecoraiz";
+include './db.php';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
