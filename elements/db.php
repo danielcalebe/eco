@@ -1,25 +1,25 @@
 <?php
-$host = getenv('ecoraiz-danielcalebe719-2b82.f.aivencloud.com');      // host do Aiven
-$user = getenv('avnadmin');      // usuário do Aiven
-$pass = getenv('AVNS_sexjgLJAxB2JrKZ_eQH');      // senha
-$db   = getenv('defaultdb');      // nome do banco
-$port = getenv('25538') ?: 3306; // porta padrão 3306
+// db.php - Conexão mysqli com MySQL do Aiven
 
+$host = 'ecoraiz-danielcalebe719-2b82.f.aivencloud.com';
+$port = 25538; // porta do Aiven
+$user = 'avnadmin';
+$pass = 'AVNS_sexjgLJAxB2JrKZ_eQH';
+$db   = 'defaultdb';
+
+// Inicializa e conecta
 $mysqli = mysqli_init();
-
-// Se precisar de SSL (recomendado pelo Aiven)
-$ssl_ca   = getenv('DB_SSL_CA');
-$ssl_cert = getenv('DB_SSL_CERT');
-$ssl_key  = getenv('DB_SSL_KEY');
-
-if ($ssl_ca && $ssl_cert && $ssl_key) {
-    $mysqli->ssl_set($ssl_key, $ssl_cert, $ssl_ca, null, null);
-}
-
 $mysqli->real_connect($host, $user, $pass, $db, $port);
 
+// Checa se houve erro na conexão
 if ($mysqli->connect_error) {
     die("Erro de conexão: " . $mysqli->connect_error);
 }
 
-echo "Conexão MySQL Aiven com mysqli bem-sucedida!";
+// Define charset UTF-8
+$mysqli->set_charset("utf8");
+
+// Criar segunda variável $conn apontando para a mesma conexão
+$conn = $mysqli;
+
+echo "Conexão MySQL Aiven com mysqli e conn bem-sucedida!";
