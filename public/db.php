@@ -3,7 +3,7 @@ $host = getenv('ecoraiz-danielcalebe719-2b82.f.aivencloud.com');      // host do
 $user = getenv('avnadmin');      // usuário do Aiven
 $pass = getenv('AVNS_sexjgLJAxB2JrKZ_eQH');      // senha
 $db   = getenv('defaultdb');      // nome do banco
-$port = getenv('25538') ?: 3306; // porta padrão 3306
+$port = getenv('25538');// porta padrão 3306
 
 $mysqli = mysqli_init();
 
