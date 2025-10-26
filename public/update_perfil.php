@@ -7,11 +7,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Conexão
-$conn = new mysqli("localhost", "root", "", "ecoraiz");
-if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'error' => 'Falha na conexão: '.$conn->connect_error]);
-    exit;
-}
+include './db.php';
 
 // Verifica login
 $id_usuario = $_SESSION['id_usuario'] ?? null;
