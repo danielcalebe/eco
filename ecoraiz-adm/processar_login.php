@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($usuario && password_verify($senhaDigitada, $usuario['senha'])) {
 
 
-        echo("Oi");
         // Login bem-sucedido → define sessão de admin
         $_SESSION['admin'] = [
             'id' => $usuario['id_funcionario'],
