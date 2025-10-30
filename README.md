@@ -1,4 +1,4 @@
-# 🌱 EcoRaiz — Plataforma Sustentável de Compostagem e E-commerce
+#  EcoRaiz — Plataforma Sustentável de Compostagem e E-commerce
 
 **Tecnologias:** PHP · MySQL · JavaScript · HTML5 · CSS3 · Stripe API · Nominatim API  
 
