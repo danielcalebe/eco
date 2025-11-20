@@ -148,9 +148,10 @@ if ($id_usuario) {
 
       <div class="container">
         <div class="row gy-4">
-          <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out">
-            <img src="assets/img/bg.png" alt="Phone 1" class="phone-1">
-          </div>
+    <div class="col-lg-4 order-lg-last hero-img d-none d-lg-block" data-aos="zoom-out">
+    <img src="assets/img/bg.png" alt="Phone 1" class="phone-1">
+</div>
+
           <div class="col-lg-8 d-flex flex-column justify-content-center align-items text-center text-md-start"
             data-aos="fade-up">
             <h2>O futuro da agricultura é sustentável. Junte-se à EcoRaiz!</h2>
